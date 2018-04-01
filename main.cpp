@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <stdlib.h>
 
 #define MAXGUESSES 10
 
@@ -22,14 +23,16 @@ int main()
 
 	int code[4] = { codegen(mt) , codegen(mt) , codegen(mt) , codegen(mt) };
 
-	/*std::cout << "code=" << 
+	std::cout << "code=" << 
 	code[0] << 
 	code[1] << 
 	code[2] << 
 	code[3] << 
-	"\n";*/
+	"\n";
 
 	std::string guess;
+	int bulls,cows,toi=0;
+	char buffer[1]; // so convert to const char*
 	for (int i=1;i<=MAXGUESSES;++i)
 	{
 		retry:
@@ -38,6 +41,26 @@ int main()
 
 		// validate
 		if ( !validatestring(guess) ) goto retry; // try again
+
+		bulls = 0;
+		cows = 0; // reset
+
+		// cows = matches - bulls
+		// FIND MATCHES
+		for (int k=0;k<4;++k)
+		{
+			buffer[0]=guess[k];
+			toi = atoi(buffer);
+			if ( toi==code[k] ) bulls++;
+			// contains
+			//for (int c=0;c<4;++c)
+			{
+
+			}
+			
+		}
+		// print how close
+		std::cout << "bulls: " << bulls << std::endl << std::endl;
 	}
 
 	return 0;
