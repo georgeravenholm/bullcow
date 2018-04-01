@@ -1,5 +1,15 @@
 #include <iostream>
 #include <random>
+#include <string>
+
+#define MAXGUESSES 10
+
+bool validatestring(std::string& str)
+{
+	if ( str.length() != 4 ) return false;
+
+	return std::string::npos == str.find_first_not_of("0123456789");
+}
 
 int main()
 {
@@ -12,12 +22,23 @@ int main()
 
 	int code[4] = { codegen(mt) , codegen(mt) , codegen(mt) , codegen(mt) };
 
-	std::cout << "code=" << 
+	/*std::cout << "code=" << 
 	code[0] << 
 	code[1] << 
 	code[2] << 
 	code[3] << 
-	"\n";
+	"\n";*/
+
+	std::string guess;
+	for (int i=1;i<=MAXGUESSES;++i)
+	{
+		retry:
+		std::cout << "guess (" << i << '/' << MAXGUESSES << ")\t: ";
+		std::cin >> guess;
+
+		// validate
+		if ( !validatestring(guess) ) goto retry; // try again
+	}
 
 	return 0;
 }
