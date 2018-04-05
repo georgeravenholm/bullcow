@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <string>
+#include <ctime>
 #include <stdlib.h>
 
 #define MAXGUESSES 10
@@ -17,8 +18,10 @@ int main()
 	std::cout << "Bulls and Cows" << std::endl;
 
 	// Generate number
+	
 	std::random_device rd;
-	std::mt19937 mt(rd());
+	std::mt19937 mt;
+	mt.seed(static_cast<uint64_t>(std::time(nullptr))); // using time because MiniGW is autistic and doesnt like random numbers!
 	std::uniform_int_distribution<int> codegen(0,9);
 
 	int code[4] = { codegen(mt) , codegen(mt) , codegen(mt) , codegen(mt) };
@@ -41,7 +44,7 @@ int main()
 		std::cin >> guess;
 
 		// validate
-		if ( !validatestring(guess) ) goto retry; // try again
+		if ( !validatestring(guess) ) goto retry; // try again, using goto because we dont wanna frick up the count!
 		// assume from this point onward valid string
 
 		
