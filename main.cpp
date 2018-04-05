@@ -25,7 +25,7 @@ int main()
 	std::uniform_int_distribution<int> codegen(0,9);
 
 	int code[4] = { codegen(mt) , codegen(mt) , codegen(mt) , codegen(mt) };
-
+	//int code[4] = {1,4,3,1};
 	/*std::cout << "code=" << 
 	code[0] << 
 	code[1] << 
@@ -66,8 +66,8 @@ int main()
 			if ( toi==code[k] ) 
 			{
 				bulls++;
-				counting[toi]--; // avoid cows including bulls
-				continue;
+				//counting[toi]--; // avoid cows including bulls
+				//continue;
 			}
 			// Potential cow, if there are any of that digit left
 			if ( counting[toi] > 0 )
@@ -77,7 +77,7 @@ int main()
 			}
 			
 		}
-
+		cows -= bulls;
 		// check for victory
 		if (bulls == 4)
 		{
