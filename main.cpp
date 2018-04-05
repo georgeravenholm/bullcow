@@ -26,12 +26,12 @@ int main()
 
 	int code[4] = { codegen(mt) , codegen(mt) , codegen(mt) , codegen(mt) };
 
-	std::cout << "code=" << 
+	/*std::cout << "code=" << 
 	code[0] << 
 	code[1] << 
 	code[2] << 
 	code[3] << 
-	"\n";
+	"\n";*/
 
 	std::string guess;
 	int bulls,cows,toi=0;
@@ -77,10 +77,25 @@ int main()
 			}
 			
 		}
+
+		// check for victory
+		if (bulls == 4)
+		{
+			std::cout << "you win! " << i << "/" << MAXGUESSES << " guesses used." << std::endl;
+			return 1; // end program
+		}
+
 		// print how close
-		std::cout << "bulls: " 	<< bulls << std::endl << std::endl;
-		std::cout << "cows: " 	<< cows << std::endl << std::endl;
+		std::cout << "bulls: " 	<< bulls << std::endl;
+		std::cout << "cows: " 	<< cows << std::endl;
 	}
+
+	// lost
+	std::cout << "sorry, you lost! the code was: " << code[0] << 
+	code[1] << 
+	code[2] << 
+	code[3] << 
+	"\n";
 
 	return 0;
 }
